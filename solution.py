@@ -4,7 +4,6 @@ import sys
 import struct
 import time
 import select
-import binascii
 
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
@@ -54,7 +53,7 @@ def build_packet():
     myChecksum=checksum(header+data)
 
     if sys.platform == 'darwin' :
-        myChecksum = socket.htons(myChecksum) & 0xffff
+        myChecksum = htons(myChecksum) & 0xffff
 
     else:
         myChecksum = htons(myChecksum)
@@ -149,6 +148,7 @@ def get_route(hostname):
                     if destAddr == addr[0] :
                         tracelist1.append("%d, %.0f ms, %s, %s" %(ttl, (timeReceived -timeSent)*1000, addr[0], hn))
                         tracelist2.append(tracelist1)
+                        print(tracelist2)
                         return tracelist2
                     else :
                         tracelist1.append("%d, %.0f ms, %s, %s" % (ttl, (timeReceived - timeSent) * 1000, addr[0], hn))
