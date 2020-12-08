@@ -169,7 +169,6 @@ def get_route(hostname):
                     tracelist2.append(tracelist1)
                     print("%d   rtt=%.0f ms     %s      %s" %(ttl, RoundRTT, addr[0], strHostname))
                     if (destAddr == str(addr[0])) :
-                        print('ip is met')
                         return tracelist2
                 #Fill in end
                 else:
