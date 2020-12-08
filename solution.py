@@ -81,7 +81,7 @@ def get_route(hostname):
 
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
-            destAddr = gethostbyname(hostname)
+            destAddr = str(gethostbyname(hostname))
             #Fill in start
             # Make a raw socket named mySocket
             ##icmp = getprotobyname("icmp")
@@ -167,7 +167,7 @@ def get_route(hostname):
                     strHostname = str(gethostbyaddr(addr[0])[0])
                     tracelist1.extend([str(ttl), str(RoundRTT), str(addr[0]), strHostname])
                     print("%d   rtt=%.0f ms     %s      %s" %(ttl, RoundRTT, addr[0], strHostname))
-                    if (destAddr == addr[0]) :
+                    if (destAddr == str(addr[0])) :
                         tracelist2.append(tracelist1)
                         print(tracelist2)
                         return tracelist2
